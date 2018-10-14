@@ -22,7 +22,7 @@ int in4 = 13;
 int enable1 = 9;
 int enable2 = 10;
 int rc_channel1 =5;
-int rc_channel4 =6;
+int rc_channel2 =6;
 int switchD = 3;
 
 void setup() {
