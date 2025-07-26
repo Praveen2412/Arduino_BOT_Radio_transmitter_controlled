@@ -1,32 +1,76 @@
-# Arduino BOT Radio transmitter controlled
+# Arduino Robot with Radio Control
 
-This code is used to control arduino four wheeled bot. Flysky FS-i6 transmitter and recevier are used in this project along with L298N 
-motor driver. Bind the transmitter and receiver and then use.
-### Components
+A 4-wheeled Arduino robot controlled by a Flysky FS-i6 radio transmitter. This project demonstrates wireless robot control with variable speed and directional movement using an L298N motor driver.
+
+## Features
+
+- Variable speed control
+- Forward/backward movement
+- Left/right turning
+- Wireless control using Flysky FS-i6 transmitter
+- Dual motor control with L298N driver
+- Fail-safe on signal loss
+
+## Components Required
+
 1. Arduino UNO
 2. L298N Motor Driver
-3. 4 x 500rpm DC motor
-4. Fysky FS-i6 Transmitter 
+3. 4 × DC Motors (500 RPM)
+4. Flysky FS-i6 Transmitter
 5. FS-i6 Receiver
 6. 12V Battery
+7. Chassis and wheels (not included)
 
-### Connections
+## Wiring Instructions
 
-* 2 left side motors are parallelly connected to leftside motor output
-* 2 right side motors are parallelly connected to rightside motor output
+### Motor Configuration
+- Left motors: Connect two motors in parallel to left side output of L298N
+- Right motors: Connect two motors in parallel to right side output of L298N
 
-#### Motor driver Pin to Arduino
+### Arduino to L298N Motor Driver
+| Arduino Pin | L298N Pin | Function |
+|------------|-----------|----------|
+| 9 | ENA | Left motors enable |
+| 10 | ENB | Right motors enable |
+| 8 | IN1 | Left motor control 1 |
+| 11 | IN2 | Left motor control 2 |
+| 12 | IN3 | Right motor control 1 |
+| 13 | IN4 | Right motor control 2 |
 
-* enable left = 9
-* enable right = 10
-* left motor 1 = 8
-* left motor 2 = 11
-* right motor 1 = 12
-* right motor 2 = 13
+### Arduino to FS-i6 Receiver
+| Arduino Pin | Receiver Channel | Function |
+|------------|------------------|-----------|
+| 5 | Channel 1 | Forward/Backward control |
+| 6 | Channel 2 | Left/Right control |
+| 5V | VCC | Power |
+| GND | GND | Ground |
 
-#### RF Receiver Pin to Arduino
+## Setup Instructions
 
-* forward and backward channel (rc_channel1) = 5
-* right and left channel (rc_channel2) = 6
-* vcc = 5v
-* GND = GND
+1. Connect all components according to the wiring diagram
+2. Upload the provided Arduino code
+3. Bind the FS-i6 transmitter with the receiver
+4. Power up the system with 12V battery
+5. Calibrate the transmitter sticks if needed
+
+## Code Features
+
+- PWM speed control for smooth acceleration
+- Deadband implementation for stick centering
+- Fail-safe implementation if signal is lost
+- Serial debugging output
+
+## Usage
+
+1. Power on the transmitter first, then the robot
+2. Use left stick for forward/backward movement
+3. Use right stick for left/right turning
+4. Speed is proportional to stick movement
+5. Robot stops automatically if signal is lost
+
+## Troubleshooting
+
+- No movement: Check power connections and motor driver enable pins
+- Erratic movement: Verify receiver binding and channel mapping
+- Wrong direction: Swap corresponding motor wires or adjust in code
+- Poor response: Check battery voltage and signal strength
